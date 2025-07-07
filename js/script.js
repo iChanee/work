@@ -122,13 +122,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- 4. 로고 클릭 시 메인 페이지 상단으로 스크롤 및 URL 해시 제거 ---
     const logoLink = document.querySelector('.logo a');
-    if (logoLink && logoLink.getAttribute('href') === 'index.html') {
+    if (logoLink && logoLink.getAttribute('href') === 'home.html') {
         logoLink.addEventListener('click', function(e) {
-            const isRootPath = window.location.pathname === '/' || window.location.pathname.endsWith('/index.html');
+            const isRootPath = window.location.pathname === '/home.html';
             if (isRootPath && window.location.hash) {
-                e.preventDefault(); 
-                window.scrollTo({ top: 0, behavior: 'smooth' }); 
-                history.pushState(null, '', window.location.pathname); 
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                history.pushState(null, '', window.location.pathname);
             }
         });
     }

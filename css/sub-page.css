@@ -743,3 +743,14 @@
 .floating-btn:hover {
     background: #0056b3;
 }
+
+/* 로그인 페이지 */
+.login-container {
+    max-width: 400px;
+    margin: 100px auto;
+    text-align: center;
+}
+
+.login-container h2 {
+    margin-bottom: 15px;
+}
