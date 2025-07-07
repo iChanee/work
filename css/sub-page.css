@@ -504,3 +504,57 @@
     font-size: 1.1em; /* 필요에 따라 글자 크기 조정 */
     color: #555; /* 색상 조정 */
 }
+
+/* 인재상 섹션 */
+.talent-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.talent-item {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 30px 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.talent-item:hover {
+    transform: translateY(-5px);
+}
+
+.talent-icon-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #f0f8ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 15px;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+    font-size: 2em;
+    color: #007bff;
+}
+
+.talent-item h3 {
+    margin: 10px 0;
+    font-size: 1.3em;
+    color: #333;
+}
+
+.talent-item p {
+    color: #666;
+    font-size: 0.95em;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .talent-grid {
+        grid-template-columns: 1fr;
+    }
+}
