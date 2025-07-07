@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "serve .",
-    "server": "node server.js"
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "node server.js",
+    "client": "serve ."
   },
   "repository": {
     "type": "git",
@@ -20,9 +21,11 @@
   },
   "homepage": "https://github.com/iChanee/work-experience#readme",
   "devDependencies": {
+    "concurrently": "^9.2.0",
     "serve": "^14.2.4"
   },
   "dependencies": {
+
     "express": "^4.18.2",
     "mysql2": "^3.9.2"
   }
