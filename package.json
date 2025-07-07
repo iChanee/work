@@ -26,8 +26,10 @@
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "dotenv": "^17.0.1",
     "express": "^4.21.2",
     "mysql2": "^3.14.1",
     "uuid": "^11.1.0"
-  }
+  },
+  "type": "commonjs"
 }

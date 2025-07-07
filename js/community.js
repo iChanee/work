@@ -1,3 +1,6 @@
+/* js/community.js */
+
+
 document.addEventListener('DOMContentLoaded', function() {
   const postForm = document.getElementById('new-post-form');
   const postList = document.getElementById('post-list');
