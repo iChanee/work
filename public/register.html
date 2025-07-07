@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>회원가입</title>
+  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+  <div class="login-bg">
+    <form class="login-box" id="registerForm">
+      <h2>회원가입</h2>
+      <div class="input-group">
+        <i class="fa fa-user"></i>
+        <input type="text" id="username" placeholder="Username" required>
+      </div>
+      <div class="input-group">
+        <i class="fa fa-lock"></i>
+        <input type="password" id="password" placeholder="Password" required>
+      </div>
+      <div class="input-group">
+        <i class="fa fa-lock"></i>
+        <input type="password" id="confirmPassword" placeholder="Password 확인" required>
+      </div>
+      <button type="submit" class="login-btn">회원가입</button>
+      <div class="signup-info">
+        <a href="login.html" class="signup-link">이미 계정이 있으신가요? 로그인</a>
+      </div>
+      <div id="result"></div>
+    </form>
+  </div>
+  <script>
+    document.getElementById('registerForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+      const result = document.getElementById('result');
+
+      if (password !== confirmPassword) {
+        result.innerText = '비밀번호가 일치하지 않습니다.';
+        return;
+      }
+
+      const response = await fetch('/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
+      const data = await response.json();
+      if (response.ok) {
+        result.innerText = '회원가입 성공! 로그인 페이지로 이동합니다.';
+        setTimeout(function() {
+          window.location.href = 'login.html';
+        }, 1200);
+      } else {
+        result.innerText = data.error || '회원가입 실패';
+      }
+    });
+  </script>
+</body>
+</html>

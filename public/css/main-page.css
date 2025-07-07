@@ -5,6 +5,22 @@ main {
     padding-top: 70px; /* 헤더 높이에 따라 조절 */
 }
 
+    /* main-page.css 등에 추가 */
+    .logout-btn {
+        background: #444;
+        color: #fff;
+        border: none;
+        padding: 8px 22px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-left: 16px;
+        transition: background 0.15s;
+    }
+    .logout-btn:hover {
+        background: #285af5;
+    }
+
 /* 히어로 비디오 섹션 */
 .hero-video-section {
     position: relative;
@@ -292,4 +308,5 @@ main {
         max-width: 100%; /* 모바일에서 전체 너비 사용 */
         margin-bottom: 0;
     }
+
 }

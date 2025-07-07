@@ -12,7 +12,7 @@
     <header>
         <div class="container">
             <div class="logo">
-                <a href="index.html"><img src="images/company_logo.png" alt="회사 로고"></a>
+                <a href="index.html"><img src="images/company_logo.jpg" alt="회사 로고"></a>
             </div>
             <nav>
                 <ul>
@@ -50,6 +50,8 @@
                     </li>
                 </ul>
             </nav>
+            <!-- 로그아웃 버튼(오른쪽) -->
+            <button id="logoutBtn" class="logout-btn">로그아웃</button>
         </div>
     </header>
 
@@ -173,5 +175,16 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <script>
+      // 로그아웃 버튼 동작
+      document.getElementById('logoutBtn').addEventListener('click', async function() {
+        const response = await fetch('/logout', { method: 'POST' });
+        if (response.ok) {
+          window.location.href = '/login.html';
+        } else {
+          alert('로그아웃 실패!');
+        }
+      });
+    </script>
 </body>
 </html>
