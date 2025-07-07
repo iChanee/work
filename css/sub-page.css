@@ -504,8 +504,7 @@
     font-size: 1.1em; /* 필요에 따라 글자 크기 조정 */
     color: #555; /* 색상 조정 */
 }
-
-* 인재상 섹션 */
+/* 인재상 섹션 */
 .talent-section {
     background: linear-gradient(180deg, #f5f9ff 0%, #ffffff 100%);
 }
@@ -587,4 +586,61 @@
     .talent-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* 게시판(community & Q&A) 스타일 */
+.board-links {
+    list-style: none;
+    padding: 0;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.board-links li {
+    margin-bottom: 10px;
+}
+
+.board-links a {
+    color: #007bff;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.board-links a:hover {
+    text-decoration: underline;
+}
+
+.board-section .board-list {
+    list-style: none;
+    padding: 0;
+    max-width: 800px;
+    margin: 30px auto 0;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.board-section .board-list li {
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.board-section .board-list li:last-child {
+    border-bottom: none;
+}
+
+.board-section .board-list a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.board-section .board-list a:hover {
+    color: #007bff;
+}
+
+.board-section .answer-preview {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 5px;
 }
