@@ -59,13 +59,21 @@
             <div class="container">
                 <h2>커뮤니티</h2>
                 <p>자유롭게 글을 남기고 댓글로 소통해보세요.</p>
-                <form id="new-post-form" class="board-form">
-                    <input type="text" id="post-author" placeholder="이름" required>
-                    <input type="text" id="post-title" placeholder="제목" required>
-                    <textarea id="post-content" rows="4" placeholder="내용" required></textarea>
-                    <button type="submit" class="btn">등록</button>
-                </form>
                 <ul id="post-list" class="board-list"></ul>
+
+                <div id="post-modal" class="modal hidden">
+                    <form id="new-post-form" class="board-form">
+                        <input type="text" id="post-author" placeholder="이름" required>
+                        <input type="text" id="post-title" placeholder="제목" required>
+                        <textarea id="post-content" rows="4" placeholder="내용" required></textarea>
+                        <div class="form-buttons">
+                            <button type="submit" class="btn">등록</button>
+                            <button type="button" id="close-post-form" class="btn">취소</button>
+                        </div>
+                    </form>
+                </div>
+
+                <button id="open-post-form" class="floating-btn">글 작성</button>
             </div>
         </section>
 

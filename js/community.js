@@ -1,17 +1,18 @@
 document.addEventListener('DOMContentLoaded', function() {
   const postForm = document.getElementById('new-post-form');
   const postList = document.getElementById('post-list');
-  if (!postForm || !postList) return;
+  const postModal = document.getElementById('post-modal');
+  const openBtn = document.getElementById('open-post-form');
+  const closeBtn = document.getElementById('close-post-form');
+  if (!postList) return;
 
-  let posts = JSON.parse(localStorage.getItem('communityPosts') || '[]');
-
-  function save() {
-    localStorage.setItem('communityPosts', JSON.stringify(posts));
+  function fetchPosts() {
+    return fetch('/api/posts').then(r => r.json());
   }
 
-  function render() {
+  function render(posts) {
     postList.innerHTML = '';
-    posts.forEach((post, index) => {
+    posts.forEach(post => {
       const li = document.createElement('li');
       li.className = 'post-item';
 
@@ -46,10 +47,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const author = this.author.value.trim();
         const text = this.text.value.trim();
         if (!author || !text) return;
-        posts[index].comments = posts[index].comments || [];
-        posts[index].comments.push({author, text});
-        save();
-        render();
+        fetch(`/api/posts/${post.id}/comments`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ author, text })
+        }).then(loadPosts);
       });
       li.appendChild(cForm);
 
@@ -57,17 +59,35 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
+  function loadPosts() {
+    fetchPosts().then(render);
+  }
+
+  openBtn.addEventListener('click', () => {
+    postModal.classList.remove('hidden');
+  });
+
+  closeBtn.addEventListener('click', () => {
+    postForm.reset();
+    postModal.classList.add('hidden');
+  });
+
   postForm.addEventListener('submit', function(e) {
     e.preventDefault();
     const author = document.getElementById('post-author').value.trim();
     const title = document.getElementById('post-title').value.trim();
     const content = document.getElementById('post-content').value.trim();
     if (!author || !title || !content) return;
-    posts.push({author, title, content, comments: []});
-    save();
-    postForm.reset();
-    render();
+    fetch('/api/posts', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ author, title, content })
+    }).then(() => {
+      postForm.reset();
+      postModal.classList.add('hidden');
+      loadPosts();
+    });
   });
 
-  render();
+  loadPosts();
 });
