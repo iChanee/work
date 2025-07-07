@@ -3,7 +3,7 @@
 /* 헤더 */
 header {
     background: #fff;
-    height: 60px; /* 로고 확대에도 헤더 높이는 유지 */
+    padding: 10px 0;
     border-bottom: 1px solid #eee;
     position: fixed; /* 메뉴바 고정 */
     width: 100%;
@@ -25,13 +25,8 @@ header .container {
 }
 
 .logo img {
-    height: 60px; /* 로고 이미지 높이 약간 확대 */
+    height: 40px; /* 로고 이미지 높이 설정 */
     vertical-align: middle;
-}
-
-nav {
-    position: relative;
-    top: 8px; /* 네비게이션을 약간 아래로 */
 }
 
 /* 내비게이션 (메인 메뉴) */
@@ -119,10 +114,6 @@ footer .social-links a:hover {
 
 /* 반응형을 위한 기본 미디어 쿼리 (layout.css 내에 포함) */
 @media (max-width: 768px) {
-    header {
-        height: auto; /* 모바일에서는 높이 자동 조정 */
-        padding: 10px 0;
-    }
     header .container {
         flex-direction: column;
         align-items: flex-start;
