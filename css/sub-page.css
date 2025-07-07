@@ -505,40 +505,70 @@
     color: #555; /* 색상 조정 */
 }
 
-/* 인재상 섹션 */
+* 인재상 섹션 */
+.talent-section {
+    background: linear-gradient(180deg, #f5f9ff 0%, #ffffff 100%);
+}
+
+.talent-tagline {
+    text-align: center;
+    font-size: 1.1em;
+    color: #666;
+    margin-top: -20px;
+    margin-bottom: 30px;
+}
+
 .talent-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 30px;
+    gap: 40px;
     margin-top: 40px;
     text-align: center;
+    position: relative;
 }
 
 .talent-item {
-    background: #fff;
-    border: 1px solid #eee;
-    border-radius: 10px;
-    padding: 30px 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease;
+    background: linear-gradient(145deg, #ffffff, #f7faff);
+    border-radius: 12px;
+    padding: 40px 25px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
 .talent-item:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.12);
 }
 
+.talent-item::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 6px;
+    background: var(--talent-color, #007bff);
+}
+
+.talent-item:nth-child(1) { --talent-color: #ff8a80; }
+.talent-item:nth-child(2) { --talent-color: #42a5f5; }
+.talent-item:nth-child(3) { --talent-color: #66bb6a; }
+.talent-item:nth-child(4) { --talent-color: #ab47bc; }
+
 .talent-icon-circle {
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
-    background-color: #f0f8ff;
+    background-color: var(--talent-color, #eaf3ff);
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0 auto 15px;
     box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
     font-size: 2em;
-    color: #007bff;
+    color: var(--talent-color, #007bff);
 }
 
 .talent-item h3 {
