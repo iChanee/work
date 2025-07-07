@@ -37,6 +37,7 @@
                         <a href="board.html">게시판</a>
                         <div class="dropdown-content">
                             <a href="#community">커뮤니티</a>
+                            <a href="#qna-board">Q&A 게시판</a>
                             <a href="#inquiry-full">문의</a>
                         </div>
                     </li>
@@ -54,13 +55,44 @@
     </header>
 
     <main>
-        <section id="community" class="main-page-section">
+        <section id="community" class="main-page-section board-section">
             <div class="container">
                 <h2>커뮤니티</h2>
-                <p>자유롭게 의견을 나누고 소통하는 공간입니다.</p>
-                <ul>
-                    <li><a href="#">새로운 기술 동향에 대한 토론</a></li>
-                    <li><a href="#">Q&A 게시판</a></li>
+                <p>자유롭게 글을 남기고 댓글로 소통해보세요.</p>
+                <ul id="post-list" class="board-list"></ul>
+
+                <div id="post-modal" class="modal hidden">
+                    <form id="new-post-form" class="board-form">
+                        <input type="text" id="post-author" placeholder="이름" required>
+                        <input type="text" id="post-title" placeholder="제목" required>
+                        <textarea id="post-content" rows="4" placeholder="내용" required></textarea>
+                        <div class="form-buttons">
+                            <button type="submit" class="btn">등록</button>
+                            <button type="button" id="close-post-form" class="btn">취소</button>
+                        </div>
+                    </form>
+                </div>
+
+                <button id="open-post-form" class="floating-btn">글 작성</button>
+            </div>
+        </section>
+
+        <section id="qna-board" class="main-page-section board-section">
+            <div class="container">
+                <h2>Q&A 게시판</h2>
+                <ul class="board-list">
+                    <li>
+                        <a href="#">지원서 작성 시 필요한 서류는 무엇인가요?</a>
+                        <p class="answer-preview">이력서, 자기소개서, 포트폴리오가 필요합니다.</p>
+                    </li>
+                    <li>
+                        <a href="#">온라인 문의 답변은 얼마나 걸리나요?</a>
+                        <p class="answer-preview">평균 2-3일 이내에 답변드리고 있습니다.</p>
+                    </li>
+                    <li>
+                        <a href="#">복리후생에 대해 자세히 알고 싶습니다.</a>
+                        <p class="answer-preview">보험, 교육 지원 등 다양한 혜택을 제공합니다.</p>
+                    </li>
                 </ul>
             </div>
         </section>
@@ -100,5 +132,6 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <script src="js/community.js"></script>
 </body>
 </html>
