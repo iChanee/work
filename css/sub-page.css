@@ -504,7 +504,6 @@
     font-size: 1.1em; /* 필요에 따라 글자 크기 조정 */
     color: #555; /* 색상 조정 */
 }
-
 /* 인재상 섹션 */
 .talent-section {
     background: linear-gradient(180deg, #f5f9ff 0%, #ffffff 100%);
