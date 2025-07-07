@@ -2,77 +2,48 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>로그인</title>
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/sub-page.css">
+  <link rel="stylesheet" href="css/login.css">
 </head>
-
-<body class="login-page">
-  <main class="login-container">
-    <h2>로그인</h2>
-    <form id="login-form" class="board-form">
-      <input type="text" id="login-username" placeholder="아이디" required>
-      <input type="password" id="login-password" placeholder="비밀번호" required>
-      <button type="submit" class="btn">로그인</button>
-    </form>
-
 <body>
-    <header>
-        <div class="container">
-            <div class="logo">
-                <a href="index.html"><img src="images/company_logo.png" alt="회사 로고"></a>
-            </div>
-            <nav>
-                <ul>
-                    <li class="dropdown">
-                        <a href="company-intro.html">회사 소개</a>
-                        <div class="dropdown-content">
-                            <a href="company-intro.html#greeting" class="view-more-link">인사말</a>
-                            <a href="company-intro.html#business-areas" class="view-more-link">사업 분야</a>
-                            <a href="company-intro.html#partners" class="view-more-link">협력사</a>
-                            <a href="company-intro.html#welfare" class="view-more-link">복리후생</a>
-                        </div>
-                    </li>
-                    <li class="dropdown">
-                        <a href="cti-media.html">CTI Media</a>
-                        <div class="dropdown-content">
-                            <a href="cti-media.html#company-landscape">회사 풍경</a>
-                            <a href="cti-media.html#employee-talk">현직자 소통</a>
-                            <a href="cti-media.html#web-magazine-full">웹 매거진</a>
-                        </div>
-                    </li>
-                    <li class="dropdown">
-                        <a href="board.html">게시판</a>
-                        <div class="dropdown-content">
-                            <a href="board.html#community">커뮤니티</a>
-                            <a href="board.html#qna-board">Q&A 게시판</a>
-                            <a href="board.html#inquiry-full">문의</a>
-                        </div>
-                    </li>
-                    <li class="dropdown">
-                        <a href="careers.html">인재/채용</a>
-                        <div class="dropdown-content">
-                            <a href="careers.html#ideal-talent">인재상</a>
-                            <a href="careers.html#job-categories">직무 구분</a>
-                            <a href="careers.html#successful-cases">우수 합격 사례</a>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-
-    <h2>회원가입</h2>
-    <form id="register-form" class="board-form">
-      <input type="text" id="register-username" placeholder="아이디" required>
-      <input type="password" id="register-password" placeholder="비밀번호" required>
-      <button type="submit" class="btn">회원가입</button>
+  <div class="login-box">
+    <h2>LOGIN</h2>
+    <form id="login-form">
+      <div class="input-group">
+        <span class="icon">&#128100;</span>
+        <input type="text" id="login-username" placeholder="Username" required>
+      </div>
+      <div class="input-group">
+        <span class="icon">&#128274;</span>
+        <input type="password" id="login-password" placeholder="Password" required>
+      </div>
+      <button type="submit" class="login-btn">LOGIN</button>
     </form>
-  </main>
+    <div class="extra-links">
+      <a href="register.html">회원가입</a>
+    </div>
+  </div>
+  <script>
+    document.getElementById('login-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const username = document.getElementById('login-username').value.trim();
+      const password = document.getElementById('login-password').value;
 
-  <script src="js/auth.js"></script>
+      const res = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
+      const data = await res.json();
+
+      if (res.ok) {
+        alert('로그인 성공!');
+        // 로그인 후 이동할 페이지 (예: 메인, 게시판 등)
+        window.location.href = 'board.html';
+      } else {
+        alert(data.error || '로그인 실패');
+      }
+    });
+  </script>
 </body>
 </html>
