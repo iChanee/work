@@ -1,5 +1,3 @@
-// server.js
-
 const express = require('express');
 const mysql = require('mysql2/promise');
 const bcrypt = require('bcryptjs');
@@ -23,20 +21,20 @@ app.use(express.json());
 
 // 회원가입
 app.post('/api/register', async (req, res) => {
-  const { username, password, email } = req.body;
-  if (!username || !password || !email)
+  const { username, password } = req.body;
+  if (!username || !password)
     return res.status(400).json({ error: '필수 항목 누락' });
   const hash = await bcrypt.hash(password, 10);
   const id = uuidv4();
   try {
     await pool.query(
-      'INSERT INTO users (id, username, password, email, created_at) VALUES (?, ?, ?, ?, NOW())',
-      [id, username, hash, email]
+      'INSERT INTO users (id, username, password, created_at) VALUES (?, ?, ?, NOW())',
+      [id, username, hash]
     );
     res.status(201).json({ success: true });
   } catch (err) {
     if (err.code === 'ER_DUP_ENTRY') {
-      res.status(409).json({ error: '이미 존재하는 사용자/이메일' });
+      res.status(409).json({ error: '이미 존재하는 사용자' });
     } else {
       res.status(500).json({ error: 'DB 오류', detail: err.message });
     }
@@ -127,7 +125,6 @@ async function init() {
     id VARCHAR(64) PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    email VARCHAR(100) NOT NULL UNIQUE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   )`);
   await pool.query(`CREATE TABLE IF NOT EXISTS posts (
