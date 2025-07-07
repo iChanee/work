@@ -55,14 +55,17 @@
     </header>
 
     <main>
-        <section id="community" class="main-page-section">
+        <section id="community" class="main-page-section board-section">
             <div class="container">
                 <h2>커뮤니티</h2>
-                <p>자유롭게 의견을 나누고 소통하는 공간입니다.</p>
-                <ul class="board-links">
-                    <li><a href="#">새로운 기술 동향에 대한 토론</a></li>
-                    <li><a href="#qna-board">Q&A 게시판</a></li>
-                </ul>
+                <p>자유롭게 글을 남기고 댓글로 소통해보세요.</p>
+                <form id="new-post-form" class="board-form">
+                    <input type="text" id="post-author" placeholder="이름" required>
+                    <input type="text" id="post-title" placeholder="제목" required>
+                    <textarea id="post-content" rows="4" placeholder="내용" required></textarea>
+                    <button type="submit" class="btn">등록</button>
+                </form>
+                <ul id="post-list" class="board-list"></ul>
             </div>
         </section>
 
@@ -121,5 +124,6 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <script src="js/community.js"></script>
 </body>
 </html>

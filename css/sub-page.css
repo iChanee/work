@@ -504,6 +504,7 @@
     font-size: 1.1em; /* 필요에 따라 글자 크기 조정 */
     color: #555; /* 색상 조정 */
 }
+
 /* 인재상 섹션 */
 .talent-section {
     background: linear-gradient(180deg, #f5f9ff 0%, #ffffff 100%);
@@ -643,4 +644,61 @@
     font-size: 0.9em;
     color: #666;
     margin-top: 5px;
+}
+
+/* 커뮤니티 글 작성 폼 */
+.board-form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.board-form input,
+.board-form textarea {
+    width: 100%;
+    padding: 8px 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.post-item {
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.post-meta {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.comment-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.comment-list li {
+    padding: 5px 0;
+    border-top: 1px solid #f0f0f0;
+}
+
+.comment-form {
+    margin-top: 10px;
+}
+
+.comment-form input {
+    width: calc(50% - 10px);
+    margin-right: 10px;
+    margin-bottom: 5px;
+    padding: 6px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.comment-form button {
+    padding: 6px 12px;
 }
