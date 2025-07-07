@@ -1,0 +1,506 @@
+/* css/sub-page.css */
+
+/* ... (기존 상단 스타일 유지) ... */
+
+/* 각 주요 페이지 내 하위 섹션 공통 스타일 (이전 논의된 대로 수정) */
+.main-page-section {
+    padding: 80px 0;
+    border-bottom: 1px solid #eee;
+    min-height: calc(100vh - 70px - 80px - 30px); /* 화면 높이만큼 콘텐츠가 채워지도록 최소 높이 설정 */
+    display: none; /* 기본적으로 모든 하위 섹션을 숨김 */
+}
+
+.main-page-section:nth-of-type(odd) {
+    background: #f9f9f9;
+}
+
+.main-page-section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.2em;
+}
+
+/* 'active' 클래스가 있으면 보이게 함 */
+.main-page-section.active {
+    display: block; /* 'active' 클래스가 있으면 보이게 함 */
+}
+
+/* ------------------------------------------- */
+/* 새로 추가되는 복지 섹션 스타일 */
+/* ------------------------------------------- */
+
+.welfare-grid {
+    display: grid;
+    /* 3열 레이아웃: 각 열은 1fr (가용한 공간을 균등 분배) */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 30px; /* 그리드 항목 간의 간격 */
+    margin-top: 40px; /* 섹션 제목과의 간격 */
+}
+
+.welfare-item {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 25px;
+    text-align: left; /* 텍스트 정렬은 왼쪽으로 */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08); /* 부드러운 그림자 */
+    display: flex; /* 아이콘과 텍스트 정렬을 위해 flexbox 사용 */
+    flex-direction: column; /* 세로 방향으로 정렬 */
+    align-items: flex-start; /* 아이템 시작점에 맞춰 정렬 */
+    transition: transform 0.3s ease; /* 호버 효과 */
+}
+
+.welfare-item:hover {
+    transform: translateY(-5px); /* 호버 시 약간 위로 올라오는 효과 */
+}
+
+.welfare-icon-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #f0f8ff; /* 아이콘 배경색 (옅은 파란색) */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px; /* 아이콘과 제목 사이 간격 */
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05); /* 입체감 있는 내부 그림자 */
+}
+
+.welfare-icon-img {
+    font-size: 2.5em; /* 아이콘 크기 */
+    color: #007bff; /* 아이콘 색상 */
+}
+
+.welfare-item h3 {
+    font-size: 1.5em;
+    color: #333;
+    margin-top: 0; /* h3의 기본 margin-top 제거 */
+    margin-bottom: 15px; /* 제목과 목록 사이 간격 */
+    text-align: left; /* h3도 왼쪽 정렬 */
+}
+
+.welfare-item ul {
+    list-style: none; /* 기본 리스트 스타일 제거 */
+    padding: 0;
+    margin: 0;
+    width: 100%; /* 목록 너비 100% */
+}
+
+.welfare-item ul li {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 8px; /* 목록 항목 간격 */
+    padding-left: 15px; /* 들여쓰기 */
+    position: relative;
+}
+
+.welfare-item ul li::before {
+    content: '\2022'; /* 불릿 포인트 (작은 원) */
+    color: #007bff; /* 불릿 색상 */
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em; /* 불릿을 텍스트 밖으로 */
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/* ------------------------------------------- */
+/* 기존 스타일들 (이어서 붙여넣기) */
+/* ------------------------------------------- */
+
+/* 사업 분야 아이템 */
+.business-item {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.business-item h3 {
+    color: #007bff;
+    margin-top: 0;
+}
+
+/* 현직자 소통 (testimonial) */
+.testimonial {
+    background: #e6f2ff;
+    border-left: 5px solid #007bff;
+    padding: 20px;
+    margin: 20px auto;
+    font-style: italic;
+    color: #555;
+    max-width: 700px;
+    border-radius: 5px;
+}
+
+/* 매거진 아티클 (하위 페이지용) */
+.magazine-article {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.magazine-article h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.magazine-article p {
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* 채용 직무 (job-opening) */
+.job-opening {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.job-opening h3 {
+    margin: 0;
+    color: #333;
+}
+
+.job-opening p {
+    margin: 0;
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* 합격 사례 (case-study) */
+.case-study {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.case-study h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.case-study p {
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* 문의 양식 (하위 페이지용) */
+.contact-section form {
+    max-width: 600px;
+    margin: 0 auto 30px;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* 전체 목록 페이지 (특허/인증 상세 페이지) */
+.full-list-page-section {
+    padding: 80px 0;
+    min-height: 80vh; /* 최소 높이 설정 */
+    background: #f0f2f5;
+}
+
+.full-list-page-section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    color: #333;
+}
+
+.full-list-page-section ul {
+    list-style: none;
+    padding: 0;
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.full-list-page-section li {
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    font-size: 1.1em;
+    color: #555;
+}
+
+.full-list-page-section li:last-child {
+    border-bottom: none;
+}
+
+.full-list-page-section li strong {
+    color: #007bff;
+}
+
+/* 반응형 (sub-page.css 내에 포함) */
+@media (max-width: 768px) {
+    .welfare-grid {
+        grid-template-columns: 1fr; /* 모바일에서는 1열로 변경 */
+    }
+}
+.greeting-container {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    max-width: 1200px; /* 최대 너비 설정 */
+    margin: 0 auto;
+    padding: 0 15px; /* 좌우 여백 */
+    gap: 50px;
+}
+
+/* css/sub-page.css */
+
+/* ... (기존 상단 스타일 및 .main-page-section, .welfare-grid 등 유지) ... */
+
+/* ------------------------------------------- */
+/* 새로 추가되는 협력사 섹션 스타일 */
+/* ------------------------------------------- */
+
+.partners-carousel-wrapper {
+    position: relative;
+    width: 100%; /* container의 max-width에 맞춰질 것 */
+    max-width: 1000px; /* 메인 페이지 웹 매거진과 유사한 최대 너비 */
+    margin: 40px auto 0; /* 상단 여백 및 중앙 정렬 */
+    overflow: hidden; /* 슬라이드 숨김 */
+    padding: 0 40px; /* 좌우 화살표 공간 확보 */
+    box-sizing: border-box;
+}
+
+.partners-carousel {
+    display: flex; /* 가로로 나열 */
+    transition: transform 0.5s ease-in-out; /* 슬라이드 애니메이션 */
+    /* 아이템 간의 간격은 각 item에서 margin으로 처리 */
+}
+
+.partner-item {
+    min-width: calc(33.333% - 20px); /* 화면에 3개, 간격 고려 (20px은 margin) */
+    box-sizing: border-box;
+    margin: 0 10px; /* 아이템 간격 (좌우 10px씩 총 20px) */
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    flex-shrink: 0; /* 아이템이 줄어들지 않도록 */
+    text-align: center;
+}
+
+.partner-item a {
+    display: block; /* 링크가 카드 전체를 감싸도록 */
+    color: inherit;
+    text-decoration: none;
+    height: 100%; /* 부모 높이 상속 */
+}
+
+.partner-item img {
+    width: 100%;
+    height: 200px; /* 이미지 높이 고정 (스크린샷 기준) */
+    object-fit: cover; /* 이미지 비율 유지하며 채움 */
+    display: block;
+    border-bottom: 1px solid #eee;
+}
+
+.partner-info {
+    padding: 20px;
+}
+
+.partner-info h3 {
+    font-size: 1.3em;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 10px;
+    text-align: center; /* 제목 중앙 정렬 */
+}
+
+.partner-info p {
+    font-size: 0.95em;
+    color: #666;
+    line-height: 1.5;
+    text-align: left; /* 설명은 왼쪽 정렬 */
+}
+
+/* 캐러셀 내비게이션 버튼 (기존 carousel-nav 클래스 재활용) */
+/* .carousel-nav는 이미 base.css나 main-page.css에 정의되어 있다면 여기서는 추가 정의 불필요 */
+/* 만약 없다면 main-page.css의 carousel-nav 스타일을 복사하여 여기에도 추가해야 함 */
+
+.carousel-nav.prev-partner {
+    left: 0;
+}
+
+.carousel-nav.next-partner {
+    right: 0;
+}
+
+
+/* ------------------------------------------- */
+/* 기존 스타일들 (이어서 붙여넣기) */
+/* ------------------------------------------- */
+/* ... (기존 .business-item, .testimonial, .magazine-article, .job-opening, 
+   .case-study, .contact-section, .full-list-page-section,
+   그리고 복지 섹션 스타일 등 유지) ... */
+
+/* 반응형 (sub-page.css 내에 포함) */
+@media (max-width: 1024px) { /* 3열이 2열로 바뀌는 지점 (예시) */
+    .partner-item {
+        min-width: calc(50% - 20px); /* 2개 항목이 한 줄에 오도록 */
+    }
+}
+
+@media (max-width: 768px) {
+    .welfare-grid {
+        grid-template-columns: 1fr; /* 모바일에서는 1열로 변경 */
+    }
+    .partners-carousel-wrapper {
+        padding: 0 20px; /* 모바일에서 화살표 공간 줄이기 */
+    }
+    .partner-item {
+        min-width: calc(100% - 20px); /* 모바일에서는 1열로 변경 */
+    }
+}
+
+/* css/sub-page.css */
+
+/* ... (기존 상단 스타일 및 .main-page-section, .welfare-grid 등 유지) ... */
+
+/* ------------------------------------------- */
+/* 협력사 섹션 스타일 - 수정된 부분 */
+/* ------------------------------------------- */
+
+.partners-carousel-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 1200px; /* 컨테이너 최대 너비를 1200px로 설정 (index.html .container와 동일하게) */
+    margin: 40px auto 0;
+    overflow: hidden;
+    padding: 0 50px; /* 좌우 화살표 공간 확보를 위해 패딩 증가 */
+    box-sizing: border-box;
+}
+
+.partners-carousel {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.partner-item {
+    /* 기존: min-width: calc(33.333% - 20px); */
+    /* 3개씩 노출되도록 계산된 너비. 갤 간격을 30px로 가정하고 계산 */
+    /* (100% - (간격 수 * 간격 너비)) / 노출 개수 */
+    /* (100% - (2 * 30px)) / 3 = (100% - 60px) / 3 = 약 33.33% - 20px */
+    width: calc(33.333% - 20px); /* 3개 노출 (총 2개의 간격이므로 20px) */
+    box-sizing: border-box;
+    margin: 0 10px; /* 아이템 간격: 좌우 10px씩 = 총 20px */
+    background: #fff;
+    border-radius: 10px; /* 모서리 둥글게 */
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.12); /* 그림자 강화 */
+    flex-shrink: 0;
+    text-align: center;
+    /* 높이 길게 수정 */
+    height: 480px; /* 각 카드의 고정 높이 설정 */
+    display: flex; /* 내부 콘텐츠 정렬을 위해 flexbox 사용 */
+    flex-direction: column; /* 세로 방향 정렬 */
+    justify-content: space-between; /* 내용이 위아래로 퍼지도록 */
+}
+
+.partner-item a {
+    display: flex; /* 링크도 flex 컨테이너로 */
+    flex-direction: column; /* 세로 정렬 */
+    color: inherit;
+    text-decoration: none;
+    height: 100%;
+}
+
+.partner-item img {
+    width: 100%;
+    /* 기존: height: 200px; */
+    height: 250px; /* 이미지 높이를 더 길게 */
+    object-fit: cover;
+    display: block;
+    border-bottom: 1px solid #eee;
+}
+
+.partner-info {
+    padding: 20px;
+    flex-grow: 1; /* 남은 공간을 채우도록 설정 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 내부 텍스트 세로 중앙 정렬 */
+}
+
+.partner-info h3 {
+    font-size: 1.6em; /* 제목 크기 키우기 */
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 15px; /* 제목과 설명 사이 간격 증가 */
+    text-align: center;
+}
+
+.partner-info p {
+    font-size: 1.1em; /* 설명 글자 크기 키우기 */
+    color: #666;
+    line-height: 1.6;
+    text-align: center; /* 설명 중앙 정렬 */
+}
+
+/* 캐러셀 내비게이션 버튼 (기존 carousel-nav 클래스 재활용) */
+.carousel-nav {
+    /* 기존 스타일 유지하면서 필요한 경우 미세 조정 */
+    padding: 12px 18px; /* 버튼 패딩 조정 */
+    font-size: 1.8em; /* 버튼 글자 크기 키우기 */
+}
+
+/* ------------------------------------------- */
+/* 반응형 (sub-page.css 내에 포함) - 수정된 부분 */
+/* ------------------------------------------- */
+
+@media (max-width: 1200px) { /* 1200px 이하에서는 3개씩, gap 조정 */
+    .partners-carousel-wrapper {
+        max-width: 90%; /* 화면 너비에 맞게 조절 */
+    }
+}
+
+@media (max-width: 992px) { /* 태블릿 가로 (예시) - 2열로 변경 */
+    .partner-item {
+        min-width: calc(50% - 20px); /* 2개 항목이 한 줄에 오도록 (총 1개의 간격이므로 20px) */
+    }
+}
+
+@media (max-width: 768px) { /* 모바일 (예시) - 1열로 변경 */
+    .welfare-grid {
+        grid-template-columns: 1fr;
+    }
+    .partners-carousel-wrapper {
+        padding: 0 20px; /* 모바일에서 화살표 공간 줄이기 */
+    }
+    .partner-item {
+        min-width: 100%; /* 모바일에서는 1열로 변경 (마진은 그대로 유지) */
+        margin: 0; /* 모바일에서는 좌우 마진 제거하여 꽉 채우기 */
+    }
+}
+
+#partners p {
+    text-align: center; /* 텍스트 중앙 정렬 */
+    margin-bottom: 40px; /* 협력사 캐러셀과의 간격 조정 */
+    font-size: 1.1em; /* 필요에 따라 글자 크기 조정 */
+    color: #555; /* 색상 조정 */
+}

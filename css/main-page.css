@@ -1,0 +1,295 @@
+/* css/main-page.css */
+
+/* 메인 콘텐츠가 고정된 헤더 아래에 오도록 패딩 (첫 섹션) */
+main {
+    padding-top: 70px; /* 헤더 높이에 따라 조절 */
+}
+
+/* 히어로 비디오 섹션 */
+.hero-video-section {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 70px); /* 뷰포트 높이에서 헤더 높이 제외 */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+}
+
+.video-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none; /* 비디오 위 요소 클릭 가능하게 */
+}
+
+.video-wrapper iframe {
+    width: 100vw; /* 뷰포트 너비 */
+    height: 56.25vw; /* 16:9 비율 유지 (9 / 16 = 0.5625) */
+    min-height: 100vh; /* 뷰포트 높이에 꽉 차게 */
+    min-width: 177.77vh; /* 16:9 비율 유지 (16 / 9 = 1.7777) */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.video-overlay {
+    position: relative;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.video-overlay h1 {
+    font-size: 3.5em;
+    margin-bottom: 15px;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.video-overlay p {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+/* 웹 매거진 슬라이더 섹션 */
+.main-web-magazine-section {
+    background: #f0f2f5;
+    text-align: center;
+}
+
+.magazine-carousel-wrapper {
+    position: relative;
+    width: 90%; /* 컨테이너 너비 제한 */
+    max-width: 1000px;
+    margin: 0 auto;
+    overflow: hidden; /* 슬라이드 숨김 */
+    padding: 0 40px; /* 좌우 화살표 공간 */
+    box-sizing: border-box;
+}
+
+.magazine-carousel {
+    display: flex; /* 가로로 나열 */
+    transition: transform 0.5s ease-in-out; /* 슬라이드 애니메이션 */
+}
+
+.magazine-item {
+    min-width: calc(50% - 20px); /* 화면에 2개, 간격 고려 (20px은 margin) */
+    box-sizing: border-box;
+    margin: 0 10px; /* 아이템 간격 */
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    flex-shrink: 0; /* 아이템이 줄어들지 않도록 */
+}
+
+.magazine-item img {
+    width: 100%;
+    height: 200px; /* 썸네일 이미지 높이 고정 */
+    object-fit: cover; /* 이미지 비율 유지하며 채움 */
+    display: block;
+}
+
+.magazine-item h3 {
+    font-size: 1.2em;
+    padding: 15px;
+    color: #333;
+    margin: 0;
+}
+
+.magazine-item a {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+
+.magazine-item a:hover h3 {
+    color: #007bff;
+}
+
+.carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1.5em;
+    z-index: 5;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+}
+
+.carousel-nav:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.carousel-nav.prev {
+    left: 0;
+}
+
+.carousel-nav.next {
+    right: 0;
+}
+
+/* 특허 및 인증 섹션 
+.achievements-section .container,
+.contact-info-section .container {
+    이 컨테이너는 이제 item-wrapper를 감싸는 역할만 하므로, 별다른 flex 속성 없음 
+}
+*/
+.item-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 40px; /* 아이템 간격 */
+    flex-wrap: wrap; /* 반응형을 위해 줄바꿈 허용 */
+    margin-top: 40px; /* 섹션 제목과의 간격 */
+}
+
+.achievement-item {
+    flex: 1;
+    min-width: 300px;
+    max-width: calc(50% - 20px); /* 2개 항목이 한 줄에 오도록 */
+    background: #f9f9f9;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border: 1px solid #eee;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.achievement-item h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #007bff;
+}
+
+.achievement-item .achievement-img {
+    height: 200px;
+    width: auto;
+    object-fit: contain;
+    margin: 0 auto 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.achievement-item .achievement-title {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.achievement-item .view-more-link {
+    display: inline-block;
+    margin-top: 15px;
+    font-size: 0.9em;
+    color: #666;
+    text-decoration: underline;
+}
+
+.achievement-item .view-more-link:hover {
+    color: #007bff;
+}
+
+/* 견적 및 개발 문의 CTA 섹션 */
+.inquiry-cta-section {
+    background: #0056b3;
+    color: #fff;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.inquiry-cta-section h2 {
+    color: #fff;
+    font-size: 2.5em;
+    margin-bottom: 15px;
+}
+
+.inquiry-cta-section p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+
+/* 고객센터 및 오시는 길 섹션 */
+.contact-block {
+    flex: 1;
+    min-width: 300px;
+    max-width: calc(50% - 20px);
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.contact-block h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.contact-block p {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.contact-block .contact-detail {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.contact-block .btn-sm {
+    padding: 8px 15px;
+    font-size: 0.9em;
+    margin-top: 15px;
+}
+
+.directions #map {
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+
+/* 메인 페이지 반응형 */
+@media (max-width: 768px) {
+    .hero-video-section {
+        height: 60vh;
+    }
+    .video-overlay h1 {
+        font-size: 2.5em;
+    }
+    .video-overlay p {
+        font-size: 1.1em;
+    }
+
+    .magazine-item {
+        min-width: calc(100% - 20px); /* 모바일에서 1개만 보이도록 */
+    }
+
+    .item-wrapper {
+        flex-direction: column; /* 세로로 나열 */
+        gap: 20px; /* 세로 간격 조정 */
+        align-items: center; /* 가운데 정렬 */
+    }
+
+    .achievement-item,
+    .contact-block {
+        max-width: 100%; /* 모바일에서 전체 너비 사용 */
+        margin-bottom: 0;
+    }
+}

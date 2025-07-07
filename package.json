@@ -1,0 +1,24 @@
+{
+  "name": "work-experience",
+  "version": "1.0.0",
+  "description": "일경험 프로젝트 (씨티아이코리아)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "serve ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iChanee/work-experience.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iChanee/work-experience/issues"
+  },
+  "homepage": "https://github.com/iChanee/work-experience#readme",
+  "devDependencies": {
+    "serve": "^14.2.4"
+  }
+}

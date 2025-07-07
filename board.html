@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회사명 | 게시판</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/sub-page.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html"><img src="images/company_logo.png" alt="회사 로고"></a>
+            </div>
+            <nav>
+                <ul>
+                    <li class="dropdown">
+                        <a href="company-intro.html">회사 소개</a>
+                        <div class="dropdown-content">
+                            <a href="company-intro.html#greeting">인사말</a>
+                            <a href="company-intro.html#business-areas">사업 분야</a>
+                            <a href="company-intro.html#partners">협력사</a>
+                            <a href="company-intro.html#welfare">복리후생</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="cti-media.html">CTI Media</a>
+                        <div class="dropdown-content">
+                            <a href="cti-media.html#company-landscape">회사 풍경</a>
+                            <a href="cti-media.html#employee-talk">현직자 소통</a>
+                            <a href="cti-media.html#web-magazine-full">웹 매거진</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="board.html">게시판</a>
+                        <div class="dropdown-content">
+                            <a href="#community">커뮤니티</a>
+                            <a href="#inquiry-full">문의</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="careers.html">인재/채용</a>
+                        <div class="dropdown-content">
+                            <a href="careers.html#ideal-talent">인재상</a>
+                            <a href="careers.html#job-categories">직무 구분</a>
+                            <a href="careers.html#successful-cases">우수 합격 사례</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="community" class="main-page-section">
+            <div class="container">
+                <h2>커뮤니티</h2>
+                <p>자유롭게 의견을 나누고 소통하는 공간입니다.</p>
+                <ul>
+                    <li><a href="#">새로운 기술 동향에 대한 토론</a></li>
+                    <li><a href="#">Q&A 게시판</a></li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="inquiry-full" class="contact-section main-page-section">
+            <div class="container">
+                <h2>문의</h2>
+                <p>궁금한 점이 있으시면 언제든지 문의해주세요.</p>
+                <form action="#" method="POST">
+                    <div class="form-group">
+                        <label for="name">이름:</label>
+                        <input type="text" id="name-inquiry" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">이메일:</label>
+                        <input type="email" id="email-inquiry" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">메시지:</label>
+                        <textarea id="message-inquiry" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">보내기</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 회사명. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#">Facebook</a> |
+                <a href="#">LinkedIn</a> |
+                <a href="#">Twitter</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
