@@ -55,15 +55,59 @@
 
     <main>
         <section id="community" class="main-page-section">
-            <div class="container">
-                <h2>커뮤니티</h2>
-                <p>자유롭게 의견을 나누고 소통하는 공간입니다.</p>
-                <ul>
-                    <li><a href="#">새로운 기술 동향에 대한 토론</a></li>
-                    <li><a href="#">Q&A 게시판</a></li>
-                </ul>
+    <div class="container">
+        <h2>커뮤니티</h2>
+        <p>자유롭게 의견을 나누고 소통하는 공간입니다.</p>
+        <div class="board-wrapper">
+            <table class="board-table">
+                <thead>
+                    <tr>
+                        <th style="width:10%;">번호</th>
+                        <th style="width:44%;">제목</th>
+                        <th style="width:18%;">작성자</th>
+                        <th style="width:14%;">날짜</th>
+                        <th style="width:7%;">조회</th>
+                        <th style="width:7%;">댓글</th>
+                    </tr>
+                </thead>
+                <tbody id="boardBody"></tbody>
+            </table>
+            <div class="board-bottom">
+                <button class="write-btn" id="openWrite">✎ 글쓰기</button>
             </div>
-        </section>
+        </div>
+    </div>
+
+    <!-- 글쓰기 모달 -->
+    <div id="writeModal" class="modal-bg">
+        <div class="modal-content">
+            <h3>글쓰기</h3>
+            <form id="writeForm">
+                <input type="text" id="writeTitle" placeholder="제목" required />
+                <textarea id="writeContent" placeholder="내용" required></textarea>
+                <div class="modal-btns">
+                    <button type="submit" class="write-btn">등록</button>
+                    <button type="button" id="closeWrite" class="cancel-btn">취소</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- 상세보기 모달-->
+    <div id="detailModal" class="modal-bg">
+        <div class="modal-content">
+            <h3 id="detailTitle"></h3>
+            <div style="color:#888; margin-bottom:7px;">
+            <span id="detailAuthor"></span> | <span id="detailDate"></span>
+            </div>
+            <div id="detailContent" style="min-height:80px; margin-bottom:16px;"></div>
+            <button type="button" id="closeDetail" class="cancel-btn">닫기</button>
+        </div>
+    </div>
+
+</section>
+
+
+
 
         <section id="inquiry-full" class="contact-section main-page-section">
             <div class="container">
@@ -100,5 +144,8 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <script src="js/board.js"></script>
 </body>
 </html>
+
+    

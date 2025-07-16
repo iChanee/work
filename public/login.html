@@ -12,7 +12,7 @@
       <h2>LOGIN</h2>
       <div class="input-group">
         <i class="fa fa-user"></i>
-        <input type="text" id="username" placeholder="Username" required>
+        <input type="text" id="ID" placeholder="ID" required>
       </div>
       <div class="input-group">
         <i class="fa fa-lock"></i>
@@ -37,19 +37,19 @@
     window.addEventListener('DOMContentLoaded', function() {
       const savedId = getCookie('rememberId');
       if (savedId) {
-        document.getElementById('username').value = savedId;
+        document.getElementById('ID').value = savedId;
         document.getElementById('rememberMe').checked = true;
       }
     });
 
     document.getElementById('loginForm').addEventListener('submit', async function(e) {
       e.preventDefault();
-      const username = document.getElementById('username').value;
+      const ID = document.getElementById('ID').value;
       const password = document.getElementById('password').value;
       const rememberMe = document.getElementById('rememberMe').checked;
 
       if (rememberMe) {
-        setCookie('rememberId', username, 30);
+        setCookie('rememberId', ID, 30);
       } else {
         setCookie('rememberId', '', -1);
       }
@@ -57,7 +57,7 @@
       const response = await fetch('/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify({ ID, password })
       });
       const data = await response.json();
       if (response.ok) {

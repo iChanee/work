@@ -12,7 +12,7 @@
       <h2>회원가입</h2>
       <div class="input-group">
         <i class="fa fa-user"></i>
-        <input type="text" id="username" placeholder="Username" required>
+        <input type="text" id="ID" placeholder="ID" required>
       </div>
       <div class="input-group">
         <i class="fa fa-lock"></i>
@@ -32,7 +32,7 @@
   <script>
     document.getElementById('registerForm').addEventListener('submit', async function(e) {
       e.preventDefault();
-      const username = document.getElementById('username').value;
+      const ID = document.getElementById('ID').value;
       const password = document.getElementById('password').value;
       const confirmPassword = document.getElementById('confirmPassword').value;
       const result = document.getElementById('result');
@@ -45,7 +45,7 @@
       const response = await fetch('/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify({ ID, password })
       });
       const data = await response.json();
       if (response.ok) {

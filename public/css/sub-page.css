@@ -558,3 +558,99 @@
         grid-template-columns: 1fr;
     }
 }
+
+
+.board-wrapper {
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+    padding: 18px 0 8px 0;
+    width: 90%;
+    min-width: 700px;
+    max-width: 1000px;
+}
+.board-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem;
+    background: #fff;
+}
+.board-table th, .board-table td {
+    border-bottom: 1px solid #efefef;
+    padding: 10px 8px;
+    text-align: center;
+}
+.board-table td.title {
+    text-align: left;
+    font-weight: 500;
+    cursor: pointer;
+}
+.board-table td.title .reply-count {
+    color: #d12e2e;
+    margin-left: 3px;
+    font-weight: 600;
+}
+.board-bottom {
+    text-align: right;
+    margin-top: 20px;
+    margin-right: 12px;
+}
+.write-btn {
+    padding: 9px 22px;
+    border-radius: 8px;
+    border: none;
+    background: #15c178;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+    transition: background 0.15s;
+}
+.write-btn:hover { background: #0e9c5b; }
+.cancel-btn {
+    padding: 9px 18px;
+    border-radius: 8px;
+    border: none;
+    background: #bbb;
+    color: #fff;
+    margin-left: 6px;
+}
+.modal-bg {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.22);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+.modal-bg.active {
+    display: flex;
+}
+.modal-content {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px #bbb;
+    padding: 30px 24px;
+    min-width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.modal-content input[type="text"], .modal-content textarea {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+}
+.modal-btns {
+    text-align: right;
+}
+@media (max-width: 900px) {
+    .board-wrapper { min-width: 0; width: 98%; }
+}
+
