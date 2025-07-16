@@ -1,6 +1,16 @@
 /* css/layout.css */
 
 /* 헤더 */
+
+.container.header-row {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 86px;
+}
 header {
     background: #fff;
     padding: 10px 0;

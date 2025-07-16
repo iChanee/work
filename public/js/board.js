@@ -43,102 +43,40 @@ async function fetchPostDetail(post_id) {
     }
 }
 
-// 글 목록 렌더링
+// 카드형 게시글 목록 렌더링
 function renderPosts(posts) {
-    const tbody = document.getElementById("boardBody");
-    tbody.innerHTML = "";
+    const listDiv = document.querySelector(".post-list");
+    listDiv.innerHTML = "";
     if (!posts.length) {
-        const tr = document.createElement("tr");
-        tr.innerHTML = `<td colspan="6" style="color:#aaa; text-align:center;">등록된 게시글이 없습니다.</td>`;
-        tbody.appendChild(tr);
+        listDiv.innerHTML = `<div style="text-align:center; color:#aaa; margin-top:60px;">등록된 게시글이 없습니다.</div>`;
         return;
     }
     posts.forEach(post => {
-        let tr = document.createElement("tr");
-        tr.innerHTML = `
-            <td>${post.post_id}</td>
-            <td class="title" style="cursor:pointer; color:#1d8ce0;">${escapeHTML(post.title)}${post.comments > 0 ? `<span class="reply-count">[${post.comments}]</span>` : ""}</td>
-            <td>${escapeHTML(post.author)}</td>
-            <td>${formatDate(post.created_at)}</td>
-            <td>${post.views}</td>
-            <td>${post.comments}</td>
+        const card = document.createElement("div");
+        card.className = "post-card";
+        card.innerHTML = `
+            <div class="post-title">${escapeHTML(post.title)}</div>
+            <div class="post-content">${escapeHTML(post.content).replace(/\n/g," ").substring(0, 64)}${post.content.length > 64 ? '...' : ''}</div>
+            <div class="post-meta">
+                <span class="comment-count">💬 ${post.comment_count || 0}</span>
+                <span class="post-time">${formatTime(post.created_at)}</span>
+                <span class="post-author">${post.isAnonymous ? "익명" : escapeHTML(post.author)}</span>
+            </div>
         `;
-        // 제목 클릭 시 상세 모달 열기
-        tr.querySelector(".title").addEventListener("click", () => openDetailModal(post.post_id));
-        tbody.appendChild(tr);
+        // 카드 클릭시 상세 페이지 이동(혹은 상세 모달로)
+        card.onclick = () => window.location.href = `board-detail.html?id=${post.post_id}`;
+        listDiv.appendChild(card);
     });
 }
 
-// 상세 모달 열기
-async function openDetailModal(post_id) {
-    console.log("상세 모달 open 시도:", post_id);
-    const data = await fetchPostDetail(post_id);
-    if (!data) return;
-    document.getElementById("detailTitle").textContent = escapeHTML(data.title);
-    document.getElementById("detailAuthor").textContent = escapeHTML(data.author);
-    document.getElementById("detailDate").textContent = formatDate(data.created_at);
-    document.getElementById("detailContent").innerHTML = escapeHTML(data.content).replace(/\n/g, "<br>");
-    document.getElementById("detailModal").classList.add("active");
+// 시간 포맷 (17:25)
+function formatTime(dt) {
+    if (!dt) return '';
+    const d = new Date(dt);
+    const h = d.getHours().toString().padStart(2, "0");
+    const m = d.getMinutes().toString().padStart(2, "0");
+    return `${h}:${m}`;
 }
-
-// 상세 모달 닫기
-document.addEventListener("DOMContentLoaded", async () => {
-    await fetchCurrentUser();
-    let posts = await fetchPosts();
-    renderPosts(posts);
-
-    const writeModal = document.getElementById("writeModal");
-    document.getElementById("openWrite").addEventListener("click", async () => {
-        if (window.currentUser === null) {
-            await fetchCurrentUser();
-        }
-        if (!window.currentUser) {
-            if (confirm("로그인한 사용자만 글쓰기가 가능합니다.\n로그인 페이지로 이동하시겠습니까?")) {
-                location.href = "/login.html";
-            }
-            return;
-        }
-        writeModal.classList.add("active");
-    });
-    document.getElementById("closeWrite").addEventListener("click", () => {
-        writeModal.classList.remove("active");
-    });
-
-    // 상세 모달 닫기
-    document.getElementById("closeDetail").addEventListener("click", () => {
-        document.getElementById("detailModal").classList.remove("active");
-    });
-
-    // 글 등록
-    document.getElementById("writeForm").addEventListener("submit", async function (e) {
-        e.preventDefault();
-        if (!window.currentUser) {
-            alert("로그인 후 글쓰기가 가능합니다.");
-            return;
-        }
-        let title = document.getElementById("writeTitle").value.trim();
-        let content = document.getElementById("writeContent").value.trim();
-        if (!title || !content) return;
-
-        try {
-            const res = await fetch('/api/posts', {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ title, content }),
-                credentials: "include"
-            });
-            const data = await res.json();
-            if (!res.ok) throw new Error(data.error || "글 등록 실패");
-            alert("글이 등록되었습니다.");
-            writeModal.classList.remove("active");
-            this.reset();
-            posts = await fetchPosts();
-            renderPosts(posts);
-        } catch (err) {
-            alert("글 등록에 실패했습니다. (" + err.message + ")");
-        }
-    });
-});
 
 // HTML 이스케이프
 function escapeHTML(str) {
@@ -148,10 +86,28 @@ function escapeHTML(str) {
     }[c]));
 }
 
-// 날짜 포맷
-function formatDate(dateString) {
-    if (!dateString) return "";
-    const d = new Date(dateString);
-    if (isNaN(d.getTime())) return dateString;
-    return `${d.getFullYear()}.${(d.getMonth()+1).toString().padStart(2, "0")}.${d.getDate().toString().padStart(2, "0")}.`;
-}
+// 페이지 로드시
+document.addEventListener("DOMContentLoaded", async () => {
+    await fetchCurrentUser();
+    let posts = await fetchPosts();
+    renderPosts(posts);
+
+    // 글쓰기 버튼
+    const writeBtn = document.querySelector(".write-btn");
+    if (writeBtn) {
+        writeBtn.addEventListener("click", async (e) => {
+            e.preventDefault();
+            if (!window.currentUser) {
+                await fetchCurrentUser();
+            }
+            if (!window.currentUser) {
+                if (confirm("로그인한 사용자만 글쓰기가 가능합니다.\n로그인 페이지로 이동하시겠습니까?")) {
+                    location.href = "/login.html";
+                }
+                return;
+            }
+            // write-post.html로 이동
+            window.location.href = "write-post.html";
+        });
+    }
+});

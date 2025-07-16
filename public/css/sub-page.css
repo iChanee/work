@@ -3,6 +3,16 @@
 /* ... (기존 상단 스타일 유지) ... */
 
 /* 각 주요 페이지 내 하위 섹션 공통 스타일 (이전 논의된 대로 수정) */
+
+.container.header-row {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 86px;
+}
 .main-page-section {
     padding: 80px 0;
     border-bottom: 1px solid #eee;
