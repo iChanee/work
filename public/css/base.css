@@ -44,17 +44,6 @@ table {
     border-spacing: 0;
 }
 
-.container.header-row {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 22px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 86px;
-}
-
-
 /* 기본 폰트, 색상, 박스 모델 설정 */
 body {
     font-family: 'Noto Sans KR', '맑은 고딕', 'Malgun Gothic', Arial, sans-serif;

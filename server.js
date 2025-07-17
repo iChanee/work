@@ -9,6 +9,7 @@ const { v4: uuidv4 } = require('uuid');
 
 const app = express();
 
+// CORS: 반드시 origin/credentials 옵션 추가
 app.use(cors({
   origin: "http://localhost:3000", // 실제 프론트 주소에 맞게 변경
   credentials: true
@@ -17,6 +18,7 @@ app.use(cors({
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public'), { extensions: ['html'] }));
 
+// 세션
 app.use(session({
   secret: 'your_secret_key',
   resave: false,
@@ -27,6 +29,7 @@ app.use(session({
   }
 }));
 
+// MySQL 연결
 const db = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -34,6 +37,7 @@ const db = mysql.createConnection({
   database: process.env.DB_NAME // .env에 반드시 community_db로!
 });
 
+// DB 연결 체크
 db.connect(err => {
   if (err) {
     console.error('MySQL 연결 실패:', err);
@@ -47,6 +51,7 @@ app.get('/', (req, res) => {
   res.redirect('/login.html');
 });
 
+// 로그인 상태 확인 API (프론트에서 /api/me fetch)
 app.get('/api/me', (req, res) => {
   if (req.session.loggedIn && req.session.ID) {
     res.json({ loggedIn: true, ID: req.session.ID });
@@ -103,16 +108,16 @@ app.get('/api/posts', (req, res) => {
   });
 });
 
-// 글 등록 (로그인 필요, isQuestion/isAnonymous 반영)
+// 글 등록 (로그인 필요)
 app.post('/api/posts', (req, res) => {
   if (!req.session.loggedIn) {
     return res.status(401).json({ error: '로그인 필요' });
   }
-  const { title, content, isQuestion, isAnonymous } = req.body;
+  const { title, content } = req.body;
   const author = req.session.ID;
   db.query(
-    "INSERT INTO board (title, content, author, isQuestion, isAnonymous) VALUES (?, ?, ?, ?, ?)",
-    [title, content, author, isQuestion ? 1 : 0, isAnonymous ? 1 : 0],
+    "INSERT INTO board (title, content, author) VALUES (?, ?, ?)",
+    [title, content, author],
     (err, result) => {
       if (err) return res.status(500).json({ error: 'DB 오류: ' + err.message });
       res.json({ message: '글 등록 성공', post_id: result.insertId });
@@ -129,7 +134,7 @@ app.get('/main', (req, res) => {
   }
 });
 
-// 게시글 상세정보 라우터
+// 게시글 상세정보 라우터 추가
 app.get('/api/posts/:id', (req, res) => {
   const postId = req.params.id;
   db.query(
@@ -147,3 +152,4 @@ const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
+

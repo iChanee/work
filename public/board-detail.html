@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>게시글 상세 | 커뮤니티</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/sub-page.css">
+  <link rel="stylesheet" href="css/board.css">
+  <style>
+    body { background: #fafbfc; }
+    .container { max-width: 900px; margin: 0 auto; padding: 0 18px; }
+    .detail-wrap { margin: 66px auto 60px auto; }
+    .post-detail-card {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 2px 16px rgba(30,50,100,0.11);
+      padding: 42px 48px 40px 48px;
+      min-width: 330px; min-height: 200px;
+      margin-bottom: 38px;
+    }
+    .profile-row { display: flex; align-items: center; gap: 16px; margin-bottom: 9px;}
+    .profile-img {
+      width: 46px; height: 46px; border-radius: 50%;
+      background: #f4f6fa; display: flex; align-items: center; justify-content: center;
+      border: 1.3px solid #e7eaf0;
+      font-size: 1.85rem; color: #bbc4d7;
+    }
+    .detail-author-date { display: flex; flex-direction: column; gap: 2px;}
+    .detail-author { font-weight: 700; color: #404957; font-size: 1.09rem; letter-spacing: -1px;}
+    .detail-date { color: #b1b4be; font-size: 0.98rem; margin-top: 2px; letter-spacing: 0.5px;}
+    .detail-title { font-size: 1.32rem; font-weight: 800; color: #182236; margin: 11px 0 12px 0; word-break: break-all; letter-spacing: -1.2px; line-height: 1.23;}
+    .detail-content { color: #242424; font-size: 1.11rem; line-height: 1.80; margin-bottom: 8px; white-space: pre-line; min-height: 76px; word-break: break-all;}
+    .back-link { color: #2478e3; font-size: 1.07rem; text-decoration: underline; cursor: pointer; margin-top: 28px; display: inline-block; transition: color .15s;}
+    .back-link:hover { color: #0c2a7a; }
+
+    /* 댓글 트리 스타일 */
+    .comments-section { margin-top: 34px; }
+    .comment-list { display: flex; flex-direction: column; gap: 0; }
+    .comment {
+      background: #fff; border-radius: 12px; box-shadow: 0 1px 7px #edf0f5;
+      padding: 20px 22px 13px 22px; margin-bottom: 14px;
+      display: flex; flex-direction: row; gap: 15px; align-items: flex-start; position: relative;
+    }
+    .comment .profile-img { width: 36px; height: 36px; font-size: 1.3rem; min-width: 36px; margin-top: 3px; }
+    .comment-body { flex: 1; }
+    .comment-author-row { display: flex; align-items: center; gap: 10px; margin-bottom: 5px; }
+    .comment-author { font-weight: 600; color: #4070ad; font-size: 1.01rem; }
+    .comment-date { color: #b1b4be; font-size: 0.93rem;}
+    .comment-content { color: #1b1b1b; font-size: 1.07rem; line-height: 1.7; word-break: break-all;}
+    .comment-children { margin-left: 48px; margin-top: 5px; border-left: 2.5px solid #f4f4f7; padding-left: 12px;}
+    @media (max-width: 900px) { .container { max-width: 99vw; } .post-detail-card { padding: 18px 4vw 18px 4vw; } .comment { padding: 12px 5vw 12px 4vw; } }
+    @media (max-width: 600px) { .post-detail-card { padding: 12px 2vw 12px 2vw; } .comment { padding: 10px 2vw 10px 2vw; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo">
+        <a href="home.html"><img src="images/company_logo.jpg" alt="회사 로고"></a>
+      </div>
+      <nav>
+        <ul>
+          <li class="dropdown">
+            <a href="company-intro.html">회사 소개</a>
+            <div class="dropdown-content">
+              <a href="company-intro.html#greeting">인사말</a>
+              <a href="company-intro.html#business-areas">사업 분야</a>
+              <a href="company-intro.html#partners">협력사</a>
+              <a href="company-intro.html#welfare">복리후생</a>
+            </div>
+          </li>
+          <li class="dropdown">
+            <a href="cti-media.html">CTI Media</a>
+            <div class="dropdown-content">
+              <a href="cti-media.html#company-landscape">회사 풍경</a>
+              <a href="cti-media.html#employee-talk">현직자 소통</a>
+              <a href="cti-media.html#web-magazine-full">웹 매거진</a>
+            </div>
+          </li>
+          <li class="dropdown">
+            <a href="board.html" class="active">게시판</a>
+            <div class="dropdown-content">
+              <a href="board.html#community">커뮤니티</a>
+              <a href="question.html">문의</a>
+            </div>
+          </li>
+          <li class="dropdown">
+            <a href="careers.html">인재/채용</a>
+            <div class="dropdown-content">
+              <a href="careers.html#ideal-talent">인재상</a>
+              <a href="careers.html#job-categories">직무 구분</a>
+              <a href="careers.html#successful-cases">우수 합격 사례</a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="detail-wrap">
+      <div class="post-detail-card">
+        <div class="profile-row">
+          <div class="profile-img">🙍‍♂️</div>
+          <div class="detail-author-date">
+            <span class="detail-author" id="detailAuthor">익명</span>
+            <span class="detail-date" id="detailDate">-</span>
+          </div>
+        </div>
+        <div class="detail-title" id="detailTitle">로딩 중...</div>
+        <div class="detail-content" id="detailContent">불러오는 중...</div>
+        <a class="back-link" href="board.html">&larr; 목록으로</a>
+      </div>
+      <!-- 댓글 섹션 (계단식) -->
+      <div class="comments-section">
+        <div class="comment-list" id="commentList"></div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 회사명. All rights reserved.</p>
+      <div class="social-links">
+        <a href="#">Facebook</a> |
+        <a href="#">LinkedIn</a> |
+        <a href="#">Twitter</a>
+      </div>
+    </div>
+  </footer>
+  <script>
+    // 쿼리스트링에서 id 추출
+    function getParam(name) {
+      return new URLSearchParams(location.search).get(name);
+    }
+    function formatDate(dateStr) {
+      if (!dateStr) return '';
+      const d = new Date(dateStr);
+      const pad = n => n.toString().padStart(2, "0");
+      return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+    }
+    async function loadDetail() {
+      const postId = getParam('id');
+      if (!postId) return;
+      // 게시글 불러오기
+      try {
+        const res = await fetch('/api/posts/' + postId);
+        if (!res.ok) throw new Error('게시글을 불러올 수 없습니다.');
+        const data = await res.json();
+        document.getElementById('detailTitle').textContent = data.title;
+        document.getElementById('detailAuthor').textContent = data.author || '익명';
+        document.getElementById('detailDate').textContent = formatDate(data.created_at);
+        document.getElementById('detailContent').textContent = data.content || '';
+      } catch (err) {
+        document.getElementById('detailTitle').textContent = '불러오기 오류';
+        document.getElementById('detailContent').textContent = err.message;
+      }
+
+      // **댓글 트리: 서버 연동!**
+      try {
+        // 예시: /api/comments?post_id=...
+        const cres = await fetch(`/api/comments?post_id=${postId}`);
+        const commentData = cres.ok ? await cres.json() : [];
+        renderComments(commentData, document.getElementById('commentList'));
+      } catch (err) {
+        document.getElementById('commentList').innerHTML = '<div style="color:#aaa;margin:16px;">댓글을 불러오지 못했습니다.</div>';
+      }
+    }
+    // 댓글/대댓글 계단식 렌더링
+    function renderComments(comments, parentEl) {
+      parentEl.innerHTML = '';
+      comments.forEach(c => {
+        const el = document.createElement('div');
+        el.className = 'comment';
+        el.innerHTML = `
+          <div class="profile-img">🙍‍♂️</div>
+          <div class="comment-body">
+            <div class="comment-author-row">
+              <span class="comment-author">${c.author}</span>
+              <span class="comment-date">${c.date || ''}</span>
+            </div>
+            <div class="comment-content">${c.content}</div>
+          </div>
+        `;
+        parentEl.appendChild(el);
+        if (c.children && c.children.length > 0) {
+          const childBox = document.createElement('div');
+          childBox.className = 'comment-children';
+          el.appendChild(childBox);
+          renderComments(c.children, childBox);
+        }
+      });
+    }
+    window.onload = loadDetail;
+  </script>
+</body>
+</html>

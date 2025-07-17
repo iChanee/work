@@ -1,16 +1,6 @@
 /* css/main-page.css */
 
 /* 메인 콘텐츠가 고정된 헤더 아래에 오도록 패딩 (첫 섹션) */
-
-.container.header-row {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 22px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 86px;
-}
 main {
     padding-top: 70px; /* 헤더 높이에 따라 조절 */
 }

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>문의 | 게시판</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 공통 스타일시트들 (board.html과 동일하게) -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/sub-page.css">
+  <link rel="stylesheet" href="css/board.css">
+  <style>
+    body { background: #fafbfc; }
+    header {
+      background: #fff;
+      box-shadow: 0 3px 10px rgba(40,50,90,0.05);
+      position: relative;
+      z-index: 10;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 22px;
+    }
+    .logo img { height: 42px; }
+    /* 하위 Q&A(문의) 전용 스타일은 그대로 두어도 OK */
+    .main-qna-container {
+      max-width: 900px;
+      margin: 0 auto;
+      min-height: 540px;
+      padding-bottom: 40px;
+      margin-top: 60px;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .main-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+    .write-btn {
+      background: #13c909;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 34px;
+      font-size: 1.08rem;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.16s, box-shadow 0.18s;
+      box-shadow: 0 2px 10px rgba(221,43,43,0.07);
+    }
+    .write-btn:hover { background: #17b72d; }
+    .main-desc {
+      color: #555;
+      margin-bottom: 23px;
+    }
+    .qna-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-top: 32px;
+    }
+    .qna-card {
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 2px 12px rgba(40,50,90,0.08);
+      padding: 22px 26px 15px 26px;
+      transition: box-shadow .13s, transform .1s;
+      cursor: pointer;
+      min-height: 70px;
+    }
+    .qna-card:hover {
+      box-shadow: 0 7px 20px rgba(30,50,100,0.13);
+      transform: translateY(-2px) scale(1.015);
+    }
+    .qna-question { font-weight: 600; font-size: 1.07rem; margin-bottom: 8px; color: #202d48; }
+    .qna-answer { color: #545454; font-size: 1.01rem; line-height: 1.6; }
+    .qna-meta { margin-top: 12px; font-size: 0.97rem; color: #8b8b8b; display:flex; gap:13px;}
+    @media (max-width: 950px) { .container { max-width: 98vw; } .main-qna-container { padding: 0 1vw;} .main-title { font-size: 1.13rem; }}
+    @media (max-width: 700px) {
+      .main-qna-container { padding: 0 6vw;}
+      .qna-card { padding: 15px 7vw 10px 7vw; }
+      .write-btn { width: 100%; margin-top: 8px; }
+      .top-bar { flex-direction: column; gap: 7px; align-items: flex-start;}
+    }
+    footer { background: #323232; color: #e0e0e0; padding: 46px 0 30px 0; margin-top: 56px; font-size: 1.05rem;}
+    footer .container { max-width: 1100px; margin: 0 auto; text-align: center;}
+    .social-links a { color: #f6f6f6; margin: 0 8px; text-decoration: none; font-size: 1.01rem; letter-spacing: 1px;}
+    .social-links a:hover { text-decoration: underline; color: #fbb042;}
+  </style>
+</head>
+<body>
+  <!-- [헤더: board.html과 100% 동일] -->
+  <header>
+    <div class="container">
+      <div class="logo">
+        <a href="index.html"><img src="images/company_logo.jpg" alt="회사 로고"></a>
+      </div>
+      <nav>
+        <ul>
+          <li class="dropdown">
+            <a href="company-intro.html">회사 소개</a>
+            <div class="dropdown-content">
+              <a href="company-intro.html#greeting">인사말</a>
+              <a href="company-intro.html#business-areas">사업 분야</a>
+              <a href="company-intro.html#partners">협력사</a>
+              <a href="company-intro.html#welfare">복리후생</a>
+            </div>
+          </li>
+          <li class="dropdown">
+            <a href="cti-media.html">CTI Media</a>
+            <div class="dropdown-content">
+              <a href="cti-media.html#company-landscape">회사 풍경</a>
+              <a href="cti-media.html#employee-talk">현직자 소통</a>
+              <a href="cti-media.html#web-magazine-full">웹 매거진</a>
+            </div>
+          </li>
+          <li class="dropdown">
+            <a href="board.html">게시판</a>
+            <div class="dropdown-content">
+              <a href="board.html#community">커뮤니티</a>
+              <a href="question.html" class="active">문의</a>
+            </div>
+          </li>
+          <li class="dropdown">
+            <a href="careers.html">인재/채용</a>
+            <div class="dropdown-content">
+              <a href="careers.html#ideal-talent">인재상</a>
+              <a href="careers.html#job-categories">직무 구분</a>
+              <a href="careers.html#successful-cases">우수 합격 사례</a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- [본문: 문의(Q&A 카드 예시)] -->
+  <main>
+    <div class="main-qna-container">
+      <div class="top-bar">
+        <span class="main-title">Q&A 게시판</span>
+        <button class="write-btn" onclick="location.href='write-question.html'">질문 등록</button>
+      </div>
+      <div class="main-desc">자주 묻는 질문과 답변을 확인하거나, 직접 질문을 남겨보세요.</div>
+      <!-- Q&A 카드 목록 (샘플) -->
+      <div class="qna-list">
+        <div class="qna-card">
+          <div class="qna-question">복리후생은 어떻게 되나요?</div>
+          <div class="qna-answer">자세한 내용은 복리후생 메뉴에서 확인하실 수 있습니다.</div>
+          <div class="qna-meta">
+            <span>작성자: 익명</span>
+            <span>2025.07.17</span>
+          </div>
+        </div>
+        <div class="qna-card">
+          <div class="qna-question">신입 지원 시 자격 요건이 있나요?</div>
+          <div class="qna-answer">채용 공고에 따라 다르며, 각 모집 분야별 상세 자격을 확인해주세요.</div>
+          <div class="qna-meta">
+            <span>작성자: 익명</span>
+            <span>2025.07.12</span>
+          </div>
+        </div>
+        <!-- JS로 동적 렌더링 가능 -->
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 회사명. All rights reserved.</p>
+      <div class="social-links">
+        <a href="#">Facebook</a> |
+        <a href="#">LinkedIn</a> |
+        <a href="#">Twitter</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
