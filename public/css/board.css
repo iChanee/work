@@ -1,176 +1,262 @@
+body { background: #fafbfc; }
+
 .main-content {
   padding-top: 80px;
 }
 
-/* 카드형 게시글 목록 (board.html) */
+/* ----- 게시글 목록 카드 (board.html) ----- */
 .board-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 42px 32px;  /* 상하 42px, 좌우 32px */
+  margin-top: 40px;
+  margin-bottom: 56px;
+}
+
+.post-card, .board-item {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4.5px 24px 0 rgba(40,70,140,0.08);
+  border: 1.3px solid #e8eaf3;
+  padding: 26px 32px 17px 32px;
+  transition: box-shadow .15s, border .13s, background .13s;
+  cursor: pointer;
+  min-height: 110px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  margin-top: 30px;
+  justify-content: space-between;
+  margin-bottom: 0;
+  position: relative;
 }
-.board-item {
-  padding: 20px 0;
-  border-bottom: 1px solid #eee;
-  cursor: pointer;
-  background: white;
-  border-radius: 14px;
-  box-shadow: 0 1.5px 8px #eaeaea;
-  transition: box-shadow 0.16s;
+.post-card:hover, .board-item:hover {
+  background: #f6fafc;
+  border-color: #bcd7fb;
+  box-shadow: 0 9px 34px 0 rgba(30,70,160,0.12);
+  transform: translateY(-2.5px) scale(1.016);
 }
-.board-item:hover {
-  box-shadow: 0 6px 20px #dde7fa;
+.board-title, .post-title {
+  font-weight: 700;
+  font-size: 1.19rem;
+  margin-bottom: 11px;
+  color: #1d2330;
+  line-height: 1.4;
+  letter-spacing: -0.5px;
 }
-.board-item:last-child { border-bottom: none; }
-.board-title {
-  font-weight: bold;
-  font-size: 1.13rem;
-  margin-bottom: 4px;
-}
-.board-preview {
-  color: #222;
-  margin-bottom: 6px;
-  font-size: 15px;
-  line-height: 1.45;
-  max-height: 2.7em;
+.board-preview, .post-content {
+  color: #444;
+  font-size: 1.05rem;
+  margin-bottom: 13px;
+  opacity: 0.98;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.board-meta {
-  color: #888;
-  font-size: 13px;
+.board-meta, .post-meta {
+  font-size: 0.99rem;
+  color: #9da2b2;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 15px;
+  margin-bottom: 1px;
+  margin-top: 5px;
 }
 .comment-count {
-  color: #09aaff;
-  margin-left: 2px;
-  font-size: 13px;
+  color: #21b36b;
+  font-weight: 600;
 }
 .write-btn {
-  background: #3b82f6;
-  color: #fff;
+  background: #13c909;
+  color: white;
   border: none;
-  border-radius: 6px;
-  padding: 10px 24px;
-  font-size: 15px;
+  border-radius: 8px;
+  padding: 13px 38px;
+  font-size: 1.11rem;
   cursor: pointer;
-  margin-top: 14px;
   font-weight: bold;
-  transition: background 0.18s;
+  transition: background 0.16s, box-shadow 0.18s;
+  box-shadow: 0 2px 10px rgba(221,43,43,0.07);
 }
-.write-btn:hover { background: #2267cc; }
+.write-btn:hover { background: #17b72d; }
 
-/* 상세페이지 카드 스타일 (board-detail.html) */
+
+/* ----- 상세페이지 카드 (board-detail.html) ----- */
 .detail-wrap {
-  max-width: 620px;
-  margin: 70px auto 0 auto;
-  padding-bottom: 48px;
+  max-width: 680px;
+  margin: 110px auto 46px auto;
   width: 100%;
 }
-.detail-card {
+
+.post-detail-card, .detail-card {
   background: #fff;
   border-radius: 18px;
-  box-shadow: 0 2px 18px rgba(30,50,100,0.10);
-  padding: 42px 38px 36px 38px;
-  margin: 0 auto;
-  min-height: 200px;
-}
-.detail-title {
-  font-size: 1.32rem;
-  font-weight: 700;
-  margin-bottom: 9px;
-  color: #23272f;
-  word-break: break-all;
-}
-.detail-meta {
-  color: #868e96;
-  font-size: 1.01rem;
-  margin-bottom: 15px;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 10px;
-  display: flex; gap: 13px;
-}
-.detail-content {
-  color: #232323;
-  font-size: 1.09rem;
-  line-height: 1.85;
-  margin-bottom: 34px;
-  white-space: pre-line;
-  min-height: 120px;
-  word-break: break-all;
-}
-.detail-actions {
+  box-shadow: 0 2px 18px rgba(30,50,100,0.13);
+  border: 1.3px solid #e8eaf3;
+  padding: 52px 50px 38px 50px;
+  margin: 0 auto 22px auto;
+  min-height: 140px;
   display: flex;
-  gap: 13px;
-  justify-content: right;
-  margin-bottom: 8px;
-}
-.detail-btn {
-  background: #fff;
-  color: #555;
-  border: 1px solid #ccc;
-  border-radius: 7px;
-  font-size: 1.01rem;
-  padding: 7px 20px;
-  cursor: pointer;
-  transition: border .17s, color .15s;
-}
-.detail-btn:hover {
-  border: 1.5px solid #ee2222;
-  color: #ee2222;
-}
-.back-link {
-  color: #2985e3;
-  font-size: 1.03rem;
-  text-decoration: underline;
-  cursor: pointer;
-  margin-top: 15px;
-  display: inline-block;
+  flex-direction: column;
+  gap: 10px;
 }
 
-/* 모달 */
-.modal-bg {
-  display: none;
-  position: fixed;
-  z-index: 10;
-  left: 0; top: 0; width: 100vw; height: 100vh;
-  background: rgba(0,0,0,0.20);
-  align-items: center;
-  justify-content: center;
+.detail-author-row {
+  display: flex;
+  align-items: baseline;
+  gap: 15px;
+  margin-bottom: 8px;
 }
-.modal-content {
-  background: #fff;
-  border-radius: 12px;
-  padding: 28px 28px 18px 28px;
-  min-width: 340px;
-  max-width: 95vw;
-  box-shadow: 0 3px 16px #0001;
-  position: relative;
+.detail-author {
+  font-weight: 700;
+  color: #222c48;
+  font-size: 1.13rem;
+  letter-spacing: -0.6px;
 }
-.modal-content h3 { margin-top: 0; }
-.modal-btns {
-  margin-top: 16px;
+.detail-date {
+  color: #b7bbc3;
+  font-size: 0.99rem;
+  margin-top: 1.5px;
+  letter-spacing: 0.4px;
+}
+.detail-title {
+  font-size: 1.36rem;
+  font-weight: 800;
+  color: #162039;
+  margin: 9px 0 16px 0;
+  word-break: break-all;
+  letter-spacing: -1.1px;
+  line-height: 1.27;
+}
+.detail-content {
+  color: #232326;
+  font-size: 1.13rem;
+  line-height: 1.92;
+  margin-bottom: 3px;
+  white-space: pre-line;
+  min-height: 60px;
+  word-break: break-all;
+  letter-spacing: -0.18px;
+}
+.back-link-btn {
+  margin-top: 24px;
+  background: #f6f8fa;
+  border: 1.6px solid #e4e6ec;
+  border-radius: 7px;
+  padding: 10px 30px;
+  color: #2478e3;
+  font-weight: 500;
+  font-size: 1.09rem;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.13s, border 0.13s, color 0.15s;
+  box-shadow: 0 1.5px 10px #f6f8fa;
+}
+.back-link-btn:hover {
+  background: #eaf3fb;
+  color: #1450a3;
+  border-color: #b8d1f8;
+}
+
+/* ----- 댓글 입력/목록 (board-detail.html) ----- */
+.comments-section {
+  margin-top: 34px;
+  margin-bottom: 14px;
+}
+.comment-form {
   display: flex;
   gap: 10px;
-  justify-content: right;
+  margin-bottom: 17px;
+  align-items: flex-end;
 }
-.cancel-btn {
-  background: #eee;
-  color: #222;
-  border: none;
+#commentInput {
+  flex: 1;
+  min-height: 36px;
+  resize: vertical;
+  padding: 10px 14px;
+  border: 1.6px solid #e3e6ed;
   border-radius: 6px;
-  padding: 10px 18px;
-  font-size: 15px;
-  cursor: pointer;
+  font-size: 1.04rem;
+  background: #f8fafd;
 }
-@media (max-width: 900px) {
-  .detail-wrap { max-width: 97vw; }
-  .detail-card { padding: 24px 10px 18px 10px; }
+.comment-submit-btn {
+  background: #13c909;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  padding: 10px 25px;
+  font-size: 1.08rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.13s;
+}
+.comment-submit-btn:hover { background: #19b323; }
+
+.comment-list { display: flex; flex-direction: column; gap: 0; }
+.comment {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 7px #edf0f5;
+  border: 1.1px solid #e8eaf3;
+  padding: 15px 20px 10px 20px;
+  margin-bottom: 11px;
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  align-items: flex-start;
+  position: relative;
+}
+.comment-body { flex: 1; }
+.comment-author-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 4px;
+}
+.comment-author {
+  font-weight: 600;
+  color: #4680c1;
+  font-size: 1.03rem;
+}
+.comment-date {
+  color: #b1b4be;
+  font-size: 0.93rem;
+}
+.comment-content {
+  color: #232326;
+  font-size: 1.08rem;
+  line-height: 1.73;
+  word-break: break-all;
+}
+.comment-children {
+  margin-left: 37px;
+  margin-top: 4px;
+  border-left: 2px solid #f4f4f7;
+  padding-left: 11px;
+}
+
+.footer-bar {
+  width: 100vw;
+  height: 12px;
+  background: linear-gradient(90deg, #e4e6ec 0%, #f5f7fa 100%);
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 950px) {
+  .container { max-width: 98vw; }
+  .post-detail-card, .detail-card { padding: 15px 3vw 19px 3vw; }
+  .comment { padding: 8px 3vw 9px 3vw; }
+  .post-card, .board-item { padding: 18px 5vw 13px 5vw; }
 }
 @media (max-width: 600px) {
-  .modal-content { min-width: unset; width: 95vw; }
-  .detail-card { padding: 12px 6px 14px 6px; }
+  .post-detail-card, .detail-card { padding: 9px 2vw 10px 2vw; }
+  .comment { padding: 7px 2vw 8px 2vw; }
+  .post-card, .board-item { padding: 12px 2vw 9px 2vw; }
+}
+
+
+@media (max-width: 900px) {
+  .board-list { grid-template-columns: 1fr; gap: 28px 0; }
+  .container { padding-left: 10px; padding-right: 10px; }
 }
